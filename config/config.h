@@ -23,6 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //#define USE_MATRIX_I2C
 
 #define QUICK_TAP_TERM 100
+#define QUICK_TAP_TERM_PER_KEY
 #define TAPPING_TERM 160
 #define TAPPING_TERM_PER_KEY
 

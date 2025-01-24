@@ -21,13 +21,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT_split_3x6_3_ex2(
   //,--------------------------------------------------------------.   ,-------------------------------------------------------------.
-       KC_TAB,    KC_Q,    KC_W,    KC_E,LT(3,KC_R),  KC_T, KC_BRIU,      TO(0),    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
+       KC_TAB,    KC_Q,    KC_W,    KC_E,LT(3,KC_R),  KC_T, XXXXXXX,      TO(0),    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
   //|--------+--------+--------+--------+--------+--------+--------|   |-------+--------+--------+--------+--------+--------+--------|
-     CTL_T(KC_ESC),SFT_T(KC_A),OPT_T(KC_S),GUI_T(KC_D),LT(1,KC_F),KC_G,KC_BRID,TO(5),KC_H,   KC_J,    KC_K,    KC_L, KC_SCLN,MEH_T(KC_QUOT),
+     CTL_T(KC_ESC),SFT_T(KC_A),OPT_T(KC_S),GUI_T(KC_D),LT(1,KC_F),KC_G,XXXXXXX,TO(5),KC_H,   KC_J,    KC_K,OPT_T(KC_L),KC_SCLN,MEH_T(KC_QUOT),
   //|--------+--------+--------+--------+--------+--------+--------'   `-------+--------+--------+--------+--------+--------+--------|
-      KC_LSFT,MEH_T(KC_Z), KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_HYPR,
+      KC_LSFT,MEH_T(KC_Z),LT(5, KC_X),    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_HYPR,
   //|--------+--------+--------+--------+--------+--------+--------.  ,--------+--------+--------+--------+--------+--------+--------|
-                                            MO(5), KC_LGUI,   MO(2),   LT(1, KC_ENT),KC_SPC, MO(4)
+                                            MO(3), KC_LGUI,   MO(2),   LT(1, KC_ENT),KC_SPC, MO(4)
                                       //`--------------------------'  `--------------------------'
   ),
 
@@ -71,9 +71,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,--------------------------------------------------------------.   ,-------------------------------------------------------------.
       KC_CAPS,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5, _______,    _______,   KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_DEL,
   //|--------+--------+--------+--------+--------+--------+--------|   |-------+--------+--------+--------+--------+--------+--------|
-      _______, _______, _______, _______, _______, XXXXXXX, _______,    _______, XXXXXXX, XXXXXXX, XXXXXXX,  KC_F11,  KC_F12, XXXXXXX,
+      _______, _______, _______, _______, _______, XXXXXXX, _______,    _______, XXXXXXX, XXXXXXX, XXXXXXX,  KC_F11,  KC_F12,  KC_MEH,
   //|--------+--------+--------+--------+--------+--------+--------'   `-------+--------+--------+--------+--------+--------+--------|
-      _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_BRID, KC_BRIU, KC_VOLD, KC_VOLU, KC_MUTE, XXXXXXX,
+      _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_BRID, KC_BRIU, KC_VOLD, KC_VOLU, KC_MUTE, KC_HYPR,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           _______, _______, _______,    _______, _______, _______
                                       //`--------------------------'  `--------------------------'
@@ -81,9 +81,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [5] = LAYOUT_split_3x6_3_ex2(
   //,--------------------------------------------------------------.   ,-------------------------------------------------------------.
-      _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,    _______,  KC_BTN4, KC_BTN5, KC_MS_U, XXXXXXX, XXXXXXX, _______,
+      _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,    _______, KC_BTN4, KC_BTN5, KC_MS_U, XXXXXXX, XXXXXXX, _______,
   //|--------+--------+--------+--------+--------+--------+--------|   |-------+--------+--------+--------+--------+--------+--------|
-      _______, _______, _______, _______, _______, XXXXXXX, _______,    _______,  XXXXXXX, KC_MS_L, KC_MS_D, KC_MS_R, XXXXXXX, XXXXXXX,
+      _______, _______, _______, _______, _______, XXXXXXX, _______,    _______, XXXXXXX, KC_MS_L, KC_MS_D, KC_MS_R, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------'   `-------+--------+--------+--------+--------+--------+--------|
       _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
@@ -94,14 +94,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case SFT_T(KC_A):
-        case OPT_T(KC_S):
-        case GUI_T(KC_D):
-        case MEH_T(KC_QUOT):
-        case MEH_T(KC_Z):
+        case SFT_T(KC_A):    // home row
+        case OPT_T(KC_S):    // home row
+        case GUI_T(KC_D):    // home row
+        case MEH_T(KC_QUOT): // home row
+        case OPT_T(KC_L):    // home row
             return TAPPING_TERM + 50;
         default:
             return TAPPING_TERM;
+    }
+}
+
+uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case LT(3,KC_R):
+            return 0;        // disable quick tap
+        default:
+            return QUICK_TAP_TERM;
     }
 }
 
